@@ -17,11 +17,19 @@ public class ChatsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String currentUser = ((User) req.getSession().getAttribute("user")).getLogin();
+
+        if (req.getSession(false) == null || req.getSession(false).getAttribute("user") == null) {
+            resp.sendRedirect("signIn"); // Redirect to login page if not logged in
+            return;
+        }
+
+        User currentUser = (User) req.getSession().getAttribute("user");
+        String currentUserLogin = currentUser.getLogin();
         List<Message> userMessages = new ArrayList<>();
 
+
         for (Message message : InMemoryDB.messages) {
-            if (message.getTo().equals(currentUser)) {
+            if (message.getTo().equals(currentUserLogin)) {
                 userMessages.add(message);
             }
         }
