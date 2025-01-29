@@ -16,5 +16,17 @@ public class Message {
     public String getTo() {
         return to;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
 }
 

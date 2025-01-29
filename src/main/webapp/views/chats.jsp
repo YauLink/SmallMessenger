@@ -1,27 +1,37 @@
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Your Chats</title>
+    <title>Chats</title>
 </head>
 <body>
-    <h1>Your Chats</h1>
+    <h2>Your Messages</h2>
+
     <table border="1">
-        <thead>
-            <tr>
-                <th>Date/Time</th>
-                <th>From</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="message" items="${messages}">
+        <tr>
+            <th>From</th>
+            <th>Message</th>
+            <th>Timestamp</th>
+        </tr>
+        <c:choose>
+            <c:when test="${not empty messages}">
+                <c:forEach var="msg" items="${messages}">
+                    <tr>
+                        <td>${msg.from}</td>
+                        <td>${msg.text}</td>
+                        <td>${msg.timestamp}</td>
+                    </tr>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
                 <tr>
-                    <td>${message.timestamp}</td>
-                    <td>${message.from}</td>
-                    <td>${message.text}</td>
+                    <td colspan="3">No messages found.</td>
                 </tr>
-            </c:forEach>
-        </tbody>
+            </c:otherwise>
+        </c:choose>
     </table>
+
+    <br>
+    <a href="message.jsp">Send a new message</a> |
+    <a href="logout">Logout</a>
 </body>
 </html>

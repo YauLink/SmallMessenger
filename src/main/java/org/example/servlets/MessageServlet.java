@@ -20,12 +20,17 @@ public class MessageServlet extends HttpServlet {
         String text = req.getParameter("text");
         String timestamp = java.time.LocalDateTime.now().toString();
 
+        String response;
+
         if (InMemoryDB.users.containsKey(to)) {
             Message message = new Message(from, to, text, timestamp);
             InMemoryDB.messages.add(message);
-            resp.getWriter().write("Message sent!");
+            response = "Message sent!";
         } else {
-            resp.getWriter().write("Recipient not found!");
+            response =  "Recipient not found!";
         }
+
+        req.setAttribute("responseMessage", response);
+        req.getRequestDispatcher("/views/message.jsp").forward(req, resp);
     }
 }

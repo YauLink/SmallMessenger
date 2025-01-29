@@ -14,5 +14,11 @@
 
         <button type="submit">Send</button>
     </form>
+
+    <%-- Display response message if it exists --%>
+    <% String responseMessage = (String) request.getAttribute("responseMessage"); %>
+    <% if (responseMessage != null) {%>
+        <p><%= responseMessage %></p>
+        <% } %>
 </body>
 </html>
