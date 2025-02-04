@@ -14,17 +14,22 @@ import org.example.models.User;
 import org.example.storage.InMemoryDB;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
 public class SignUpServletTest {
-
+    @Mock
     private SignUpServlet signUpServlet;
+    @Mock
     private HttpServletRequest request;
+    @Mock
     private HttpServletResponse response;
+    @Mock
     private HttpSession session;
+    @Mock
     private PrintWriter writer;
 
     @BeforeEach

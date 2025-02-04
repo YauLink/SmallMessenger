@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MessageServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String from = ((User) req.getSession().getAttribute("user")).getLogin();
         String to = req.getParameter("to");
         String text = req.getParameter("text");

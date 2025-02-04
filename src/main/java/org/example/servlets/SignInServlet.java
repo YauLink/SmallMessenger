@@ -20,7 +20,6 @@ public class SignInServlet extends HttpServlet {
         User user = InMemoryDB.users.get(login);
         if (user != null && user.getPassword().equals(password)) {
             req.getSession().setAttribute("user", user);
-            //resp.sendRedirect(req.getContextPath() + "/views/message.jsp"); doesnt work changed to RequestDispatcher
 
             req.getRequestDispatcher("/views/message.jsp").forward(req, resp);
         } else {

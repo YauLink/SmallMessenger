@@ -31,4 +31,6 @@ public class User {
     public String getFullName() { return this.fullName; }
 
     public String getDateOfBirth() { return this.dateOfBirth; }
+
+    public void setLogin(String testUser) { this.login = testUser; }
 }

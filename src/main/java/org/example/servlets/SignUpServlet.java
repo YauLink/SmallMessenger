@@ -23,8 +23,6 @@ public class SignUpServlet extends HttpServlet {
             User user = new User(login, password, fullName, dateOfBirth);
             InMemoryDB.users.put(login, user);
 
-            //resp.sendRedirect(req.getContextPath() + "/views/signIn.jsp"); doesnt work changed to RequestDispatcher
-
             req.getRequestDispatcher("/views/signIn.jsp").forward(req, resp);
         } else {
             resp.getWriter().write("User already exists!");

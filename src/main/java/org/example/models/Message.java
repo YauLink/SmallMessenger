@@ -13,20 +13,12 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-    public String getTo() {
-        return to;
-    }
+    public String getTo() { return this.to; }
 
-    public String getFrom() {
-        return from;
-    }
+    public String getFrom() { return this.from; }
 
-    public String getText() {
-        return text;
-    }
+    public String getText() { return this.text; }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
+    public String getTimestamp() { return this.timestamp; }
 }
 

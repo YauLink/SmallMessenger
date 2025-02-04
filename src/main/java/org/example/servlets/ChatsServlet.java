@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.models.Message;
 import org.example.models.User;
 import org.example.storage.InMemoryDB;
@@ -16,14 +17,18 @@ import java.util.List;
 public class ChatsServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        if (req.getSession(false) == null || req.getSession(false).getAttribute("user") == null) {
-            resp.sendRedirect("signIn"); // Redirect to login page if not logged in
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session == null || session.getAttribute("user") == null) {
+            resp.sendRedirect("signIn");
             return;
         }
 
         User currentUser = (User) req.getSession().getAttribute("user");
+        if (currentUser == null) {
+            resp.sendRedirect("signIn");
+            return;
+        }
         String currentUserLogin = currentUser.getLogin();
         List<Message> userMessages = new ArrayList<>();
 
